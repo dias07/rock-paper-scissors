@@ -237,8 +237,9 @@
                 IMGSPlayer1and2();
                 IMGSPlayercomputer();
                 reset ();}}
-        if      (PUSH1Button == false && PUSH2Button == false){
-                alert("you have to choose options!!!");}}
+        while   ((PUSH1Button == false || PUSH2Button == false) && (rockpaperscissors == true))
+                {alert("you have to choose options!!!");
+                rockpaperscissors = false;}}
     function pushfun3 () {
             rockpaperscissors = true;
             rockbutton = true;
