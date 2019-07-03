@@ -319,27 +319,6 @@
                     y.setAttribute("height", "228");
                     x.setAttribute("alt", "The Pulpit Rock");
                     document.body.appendChild(y);}} 
-    function when1player () {
-        PUSH1Button = true;
-            if      (PUSH2Button == true) if ((firstplayerGuesses == "rock" && secondplayerGuesses =="scissors") ||
-                    (firstplayerGuesses == "scissors" && secondplayerGuesses =="paper") ||
-                    (firstplayerGuesses == "paper" && secondplayerGuesses =="rock"))
-                    {wins++;
-                    document.getElementById("P1wins").innerHTML = wins;
-                    IMGSPlayers1()
-                    resetPlayer1();
-                    resetPlayer2();}
-            else if(firstplayerGuesses == secondplayerGuesses){
-                    ties++;
-                    document.getElementById("P1ties").innerHTML = ties;
-                    IMGSPlayers1()
-                    resetPlayer1();
-                    resetPlayer2();}
-            else    {losses++; 
-                    document.getElementById("P1losses").innerHTML = losses;
-                    IMGSPlayers1()
-                    resetPlayer1();
-                    resetPlayer2();}}
     function choosewordfun () {
         if  (chooseword == true){
                 document.getElementById("chooseword1").style.visibility= "visible";
