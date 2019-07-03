@@ -212,8 +212,6 @@
         document.getElementById("chooseword1").style.background = "white"; 
         document.getElementById("chooseword2").style.background = "white";
         rockpaperscissors = true;
-        if      ((document.getElementById("chooseword1").style.background == "white")  && (document.getElementById("chooseword2").style.background == "white")){
-                        alert("you have to choose  player options!!!");}
         if      (PUSH1Button==true && PUSH2Button == true) if ((computerGuesses == "rock" && firstplayerGuesses=="scissors") ||
                 (computerGuesses== "scissors" && firstplayerGuesses=="paper") ||
                 (computerGuesses == "paper" && firstplayerGuesses=="rock"))
@@ -238,8 +236,9 @@
                 document.getElementById("P2losses").innerHTML = lossesplayer2;
                 IMGSPlayer1and2();
                 IMGSPlayercomputer();
-                reset ();}}
-       
+                reset ();}
+        if      ((document.getElementById("chooseword1").style.background == "white")  && (document.getElementById("chooseword1").style.background == "white")){
+                        alert("you have to choose  player options!!!");}}
     function pushfun3 () {
             rockpaperscissors = true;
             rockbutton = true;
