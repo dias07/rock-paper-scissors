@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <title>Rock–paper–scissors!</title>
+    <style type="text/css">
+        #firstdiv   {text-align: inherit;
+                    margin-top:15%;
+                    margin-left:40%;
+                    visibility:visible;}
+        #Button1    {position: absolute;
+                    top:50%;
+                    left: 20%;
+                    background-color: aquamarine;
+                    font-size: 30px;}
+        #Button2    {position: absolute;
+                    top:50%;
+                    left: 55%;
+                    background-color: aquamarine;
+                    font-size: 30px;
+                    display: none; }
+        #do         {position: fixed;
+                    margin-left: 15%;
+                    font-size: 20px;
+                    margin-top:-10%;
+                    color: red;}
+        #left       {position: absolute;
+                    top:40%;
+                    left: 20%;
+                    color:red; }
+        #right1     {position: absolute;
+                    top:40%;
+                    left: 80%;
+                    color:red; 
+                    display: none; }
+        #right2     {position: absolute;
+                    top:40%;
+                    left: 80%;
+                    color:red; }
+        #back       {position: absolute;
+                    top:50%;
+                    left: 45%;
+                    color:grey;}
+        #game1      {display: none; }
+        #rock       {position: absolute;
+                    top:45%;
+                    left: 15%;
+                    background-color: white;}
+        #paper      {position: absolute;
+                    top:45%;
+                    left: 20%;
+                    background-color: white;}
+        #scissors   {position: absolute;
+                    top:45%;
+                    left: 27%;
+                    background-color: white;}
+        #results1   {float:left;
+                    margin-left:35%;
+                    font-size: 25px;}
+        #results2   {float:right;
+                    font-size: 25px;
+                    margin-right:35%;}
+        #comp       {margin-left: 80%;}
+        .Player2img {float: right;
+                    margin-right:10%;
+                    bottom:80%;}
+        .Player1img {float: left;
+                    margin-left:10%;
+                    bottom:80%; }
+    /* @media screen and (max-width: 800px) {
+        .Player2img {display:none;}
+        .Player1img {display:none;} } */
+    @media screen and (min-width: 800px) {
+        #do         {margin-left: 15%;
+                    font-size: 25px;
+                    color: green; } }
+        #chooseword1{
+                    position: absolute;
+                    top:55%;
+                    left: 20%;
+                    font-size: 30px;}
+        #chooseword2{position: absolute;
+                    top:55%;
+                    left: 80%;
+                    font-size: 30px;}
+    </style>
+    <head>
+        <script type="text/javascript">
+            var possibleGuesses = ["rock", "paper", "scissors"]; 
+            var possibleGuessesuno = ["rock", "paper", "scissors"]; 
+            var possibleGuessesdos = ["rock", "paper", "scissors"]; 
+            var computerGuesses = possibleGuesses[Math.floor(Math.random() * possibleGuesses.length)];
+            var firstplayerGuesses = possibleGuesses[Math.floor(Math.random() * possibleGuesses.length)];
+            var s = document.getElementById("firstdiv");
+            var PushPlayer1 = false;
+            var rockpaperscissors = false;
+            var rockbutton = false;
+            var paperbutton = false;
+            var scissorsbutton = false;
+                            var wins = 0;
+                            var losses = 0;
+                            var ties = 0;
+                            var winsplayer2 = 0;
+                            var lossesplayer2 = 0;
+                            var tiesplayer2 = 0;
+                        var x = document.createElement("IMG");
+                        x.className="Player2img"
+                        var y = document.createElement("IMG");
+                        y.className ="Player1img";
+            var player1imegshow = false;
+            var PUSH2Button = false;
+            var PUSH1Button = false;
+
+    function reset () {
+        firstplayerGuesses = possibleGuesses[Math.floor(Math.random() * possibleGuesses.length)];
+        computerGuesses = possibleGuesses[Math.floor(Math.random() * possibleGuesses.length)];
+        rockbutton = false;
+        paperbutton = false;
+        scissorsbutton = false;
+        rockpaperscissors = false;
+        PUSH2Button = false;
+        PUSH1Button = false;  }
+    function myFunction(elem){
+        document.getElementById("game1").style.display = "none"; document.getElementById("right1").style.display = "none";
+        document.getElementById("Button2").style.display = "none";document.getElementById("right2").style.visibility= "hidden";
+        document.getElementById("rock").style.visibility= "hidden";document.getElementById("paper").style.visibility= "hidden";
+        document.getElementById("scissors").style.visibility= "hidden";      
+        if      (elem.checked==true){ if (document.getElementById("firstdiv").style.visibility=="hidden"){
+                document.getElementById("game1").style.display = "block";}
+        else    {document.getElementById("game1").style.display = "none";}}
+        if      (PLAYER2.checked==true){
+                document.getElementById("right1").style.display = "block";
+                document.getElementById("Button2").style.display = "block";
+                document.getElementById("Button1" ).style.visibility = "hidden";
+                document.getElementById("chooseword1").style.visibility="visible";
+                document.getElementById("chooseword2").style.visibility="visible";}
+        else    {document.getElementById("right1").style.display = "none";
+                document.getElementById("Button2").style.display = "none";}
+        if      (PLAYER1.checked==true)  {
+                document.getElementById("right2").style.visibility="visible";
+                document.getElementById("scissors").style.visibility= "visible";
+                document.getElementById("paper").style.visibility= "visible";
+                document.getElementById("rock").style.visibility= "visible";   }
+        else    {document.getElementById("right2").style.visibility= "hidden";
+                document.getElementById("scissors").style.visibility= "hidden";
+                document.getElementById("paper").style.visibility= "hidden";
+                document.getElementById("rock").style.visibility= "hidden";}
+        if      (elem.checked==true){
+                eval("PLAYER1.disabled = true");
+                eval("PLAYER2.disabled = true");
+                elem.disabled=false;}
+        else if(elem.checked==false){
+                eval("PLAYER1.disabled = false");
+                eval("PLAYER2.disabled = false");}
+        if      (document.getElementById('PLAYER1').checked) {
+                document.getElementById("name2").hidden=true;return true;}
+       else if (document.getElementById('PLAYER1').checked==false) {
+                document.getElementById("name2").hidden=false; }
+        if      (document.getElementById('PLAYER2').checked) {
+                return true; }} 
+    function Gamefunc () { 
+        document.getElementById("Button1" ).style.visibility = "visible";  
+        document.getElementById("firstdiv").style.visibility = "visible";
+        if      (myFunction(document.getElementById("PLAYER2").checked) ||document.getElementById("PLAYER1").checked) { if (document.getElementById('firstdiv')) {
+                document.getElementById("game1").style.display = "block";
+                document.getElementById("firstdiv").style.visibility="hidden";
+                document.getElementById("left").textContent = document.getElementById("name1").value;
+                document.getElementById("right1").innerHTML = document.getElementById("name2").value;
+                return true; }
+        else    {document.getElementById("game1").style.display = 'none';
+                document.getElementById("firstdiv").style.visibility="visible"; return true;}}
+            while   (myFunction(document.getElementById("PLAYER2").checked==false) ||document.getElementById("PLAYER1").checked==false) {
+                    alert("choose the box!!!");
+                    document.getElementById("demo").clicked=false;}}
+    function reloadfun() {
+        location.reload(); }
+    function pushfun1 () { 
+        player1imegshow = true;
+        document.getElementById("do").style.display = "none"; 
+        document.getElementById("paper").style.background = "white"; 
+        document.getElementById("rock").style.background = "white"; 
+        document.getElementById("scissors").style.background = "white"; 
+        if (rockpaperscissors == true){
+               if       ((rockbutton == true && computerGuesses == "scissors") ||
+                        (paperbutton == true && computerGuesses == "rock") ||
+                        (scissorsbutton  == true && computerGuesses == "paper"))               
+               {wins++; 
+                document.getElementById("P1wins").innerHTML = wins;
+                document.getElementById("comp").innerHTML = computerGuesses;
+                IMGSPlayercomputer(); 
+                IMGSPlayer1();
+                reset();}
+                else if ((rockbutton == true && computerGuesses == "rock") ||
+                        (paperbutton == true && computerGuesses == "paper") ||
+                        (scissorsbutton  == true && computerGuesses == "scissors"))
+                {ties++;
+                document.getElementById("P1ties").innerHTML = ties;
+                document.getElementById("comp").innerHTML = computerGuesses;
+                IMGSPlayercomputer();
+                IMGSPlayer1();
+                reset();}
+                else    {losses++;
+                document.getElementById("P1losses").innerHTML = losses;
+                document.getElementById("comp").innerHTML = computerGuesses;
+                IMGSPlayercomputer();
+                IMGSPlayer1();
+                reset();}
+                reset();
+                document.getElementById("results1").style.visibility= "visible"; } }   
+    function pushfun2 () {
+        document.getElementById("results1").style.visibility= "visible"; 
+        document.getElementById("results2").style.visibility= "visible";
+        document.getElementById("do").style.display = "none";
+        document.getElementById("chooseword1").style.background = "white"; 
+        document.getElementById("chooseword2").style.background = "white";
+        rockpaperscissors = true;
+        if      (PUSH1Button==true && PUSH2Button == true) if ((computerGuesses == "rock" && firstplayerGuesses=="scissors") ||
+                (computerGuesses== "scissors" && firstplayerGuesses=="paper") ||
+                (computerGuesses == "paper" && firstplayerGuesses=="rock"))
+                { winsplayer2++;
+                losses++;
+                document.getElementById("P1losses").innerHTML = losses;
+                document.getElementById("P2wins").innerHTML = winsplayer2;
+                MGSPlayer1and2();
+                IMGSPlayercomputer();
+                reset ();}
+        else if(computerGuesses == firstplayerGuesses){
+                ties++;
+                tiesplayer2++;
+                document.getElementById("P1ties").innerHTML = tiesplayer2;
+                document.getElementById("P2ties").innerHTML = tiesplayer2;
+                IMGSPlayer1and2();
+                IMGSPlayercomputer();
+                reset ();}
+        else    {wins++;
+                lossesplayer2++;
+                document.getElementById("P1wins").innerHTML = wins;
+                document.getElementById("P2losses").innerHTML = lossesplayer2;
+                IMGSPlayer1and2();
+                IMGSPlayercomputer();
+                reset ();}}
+    function pushfun3 () {
+            rockpaperscissors = true;
+            rockbutton = true;
+            document.getElementById("rock").style.background = "red";
+        if (rockbutton == true){
+            document.getElementById("paper").style.background = "white";
+            document.getElementById("scissors").style.background = "white";  }}   
+    function pushfun4 () {
+            rockpaperscissors = true;
+            paperbutton = true;
+            document.getElementById("paper").style.background = "red";
+        if (paperbutton == true){
+            document.getElementById("rock").style.background = "white";
+            document.getElementById("scissors").style.background = "white";   }}
+    function pushfun5 () {
+            rockpaperscissors = true;
+            scissorsbutton = true;
+            document.getElementById("scissors").style.background = "red";
+        if (scissorsbutton == true){
+            document.getElementById("rock").style.background = "white";
+            document.getElementById("paper").style.background = "white";}}
+    function IMGSPlayercomputer() {
+            if      (rockpaperscissors == true && computerGuesses == "rock") {
+                    x.setAttribute("src", "images/rock.png");
+                    x.setAttribute("width", "304");
+                    x.setAttribute("height", "228");
+                    x.setAttribute("alt", "The Pulpit Rock");
+                    document.body.appendChild(x);}
+            else if (rockpaperscissors == true && computerGuesses == "scissors"){
+                    x.setAttribute("src", "images/scissors.jpg");
+                    x.setAttribute("width", "304");
+                    x.setAttribute("height", "228");
+                    x.setAttribute("alt", "The Pulpit Rock");
+                    document.body.appendChild(x);}
+            else if (rockpaperscissors == true && computerGuesses == "paper"){
+                    x.setAttribute("src", "images/paper.jpg");
+                    x.setAttribute("width", "304");
+                    x.setAttribute("height", "228");
+                    x.setAttribute("alt", "The Pulpit Rock");
+                    document.body.appendChild(x);}}   
+    function IMGSPlayer1 () {
+            if      (rockbutton == true && player1imegshow ==true) {
+                    y.setAttribute("src", "images/rock.png");
+                    y.setAttribute("width", "304");
+                    y.setAttribute("height", "228");
+                    y.setAttribute("alt", "The Pulpit Rock");
+                    document.body.appendChild(y);}
+            else if (scissorsbutton == true && player1imegshow ==true){
+                    y.setAttribute("src", "images/scissors.jpg");
+                    y.setAttribute("width", "304");
+                    y.setAttribute("height", "228");
+                    y.setAttribute("alt", "The Pulpit Rock");
+                    document.body.appendChild(y);}
+            else if (paperbutton == true && player1imegshow ==true){
+                    y.setAttribute("src", "images/paper.jpg");
+                    y.setAttribute("width", "304");
+                    y.setAttribute("height", "228");
+                    y.setAttribute("alt", "The Pulpit Rock");
+                    document.body.appendChild(y);}}  
+    function IMGSPlayer1and2 () {
+            if      (rockpaperscissors == true && firstplayerGuesses== "rock") {
+                    y.setAttribute("src", "images/rock.png");
+                    y.setAttribute("width", "304");
+                    y.setAttribute("height", "228");
+                    y.setAttribute("alt", "The Pulpit Rock");
+                    document.body.appendChild(y);}
+            else if (rockpaperscissors == true && firstplayerGuesses == "scissors"){
+                    y.setAttribute("src", "images/scissors.jpg");
+                    y.setAttribute("width", "304");
+                    y.setAttribute("height", "228");
+                    y.setAttribute("alt", "The Pulpit Rock");
+                    document.body.appendChild(y);}
+            else if (rockpaperscissors == true && firstplayerGuesses == "paper"){
+                    y.setAttribute("src", "images/paper.jpg");
+                    y.setAttribute("width", "304");
+                    y.setAttribute("height", "228");
+                    x.setAttribute("alt", "The Pulpit Rock");
+                    document.body.appendChild(y);}} 
+    function when1player () {
+        PUSH1Button = true;
+            if      (PUSH2Button == true) if ((firstplayerGuesses == "rock" && secondplayerGuesses =="scissors") ||
+                    (firstplayerGuesses == "scissors" && secondplayerGuesses =="paper") ||
+                    (firstplayerGuesses == "paper" && secondplayerGuesses =="rock"))
+                    {wins++;
+                    document.getElementById("P1wins").innerHTML = wins;
+                    IMGSPlayers1()
+                    resetPlayer1();
+                    resetPlayer2();}
+            else if(firstplayerGuesses == secondplayerGuesses){
+                    ties++;
+                    document.getElementById("P1ties").innerHTML = ties;
+                    IMGSPlayers1()
+                    resetPlayer1();
+                    resetPlayer2();}
+            else    {losses++; 
+                    document.getElementById("P1losses").innerHTML = losses;
+                    IMGSPlayers1()
+                    resetPlayer1();
+                    resetPlayer2();}}
+    function choosewordfun () {
+        if  (chooseword == true){
+                document.getElementById("chooseword1").style.visibility= "visible";
+                document.getElementById("chooseword2").style.visibility= "visible"; }}  
+    function pushfun6 () {
+        document.getElementById("chooseword1").style.background = "red";  
+        PUSH1Button = true;}
+    function pushfun7 () {
+        document.getElementById("chooseword2").style.background = "red"; 
+        PUSH2Button = true;   } 
+    document.onkeyup = function(event) {
+        if (event.key == "r" && PUSH2Button == false) {
+            rockpaperscissors = true;
+            rockbutton = true;
+            pushfun1 ();}
+        else if (event.key == "p" && PUSH2Button == false){
+            // player1imegshow = true;
+            rockpaperscissors = true;
+            paperbutton = true;
+            pushfun1 ();}
+        else if (event.key == "s" && PUSH2Button == false){
+            rockpaperscissors = true;
+            scissorsbutton = true;
+            pushfun1 ();}}
+    </script>
+    </head>
+    <body>
+        <section id="firstdiv">  
+                <label><input id="PLAYER2"  name="PLAYER2" type="checkbox" onclick="myFunction(this)">2PLAYER</label> 
+                 <label><input id="PLAYER1" name="PLAYER1" type="checkbox" onclick="myFunction(this)">1PLAYER</label></input> </br>
+                1PLAYER name:<input value="PLAYER1" type="text" id="name1" onkeyup="myFunction()" ></br>
+                2PLAYER name:<input value="PLAYER2" type="text" id="name2" onkeyup="myFunction()">
+                <button class="demo" onclick="Gamefunc()">START GAME</button>
+                <h2> <span id="user-text"><strong></strong></span></h2></section>    
+            <div id="game1" >
+                    <span id="left">PLAYER1</span>
+                    <span id="right1">PLAYER2</span>
+                    <span id="right2"style="visibility:hidden" >COMPUTER</span>
+                    <button id="Button1" style="visibility:visible" onclick="pushfun1()">play</button>
+                    <button id="Button2" onclick="pushfun2()">play</button></br>
+                    <button id="rock" style="visibility:hidden"  onclick="pushfun3()">rock</button>
+                    <button id="paper" style="visibility:hidden"  onclick="pushfun4()">paper</button>
+                    <button id="scissors" style="visibility:hidden"  onclick="pushfun5()">scissors</button>
+                    <button id="chooseword1" style="visibility:hidden"  onclick="pushfun6()">choose</button>
+                    <button id="chooseword2" style="visibility:hidden"  onclick="pushfun7()">choose</button>
+                        <span id="do" >And for many of us, our fortunes do indeed lie at the bottom of the pyramid.</span>
+                    <button id="back"onclick="reloadfun()">go back</button> </div>
+                <div id="results1" style="visibility:hidden">
+                    Wins: <span id="P1wins"></span><br/>
+                    Losses: <span id="P1losses"></span><br/>
+                    Ties: <span id="P1ties"></span><br/> </div> 
+
+                <div id="results2" style="visibility:hidden">
+                    P2Wins: <span id="P2wins"></span><br/>
+                    P2Losses: <span id="P2losses"></span><br/>
+                    P1Ties: <span id="P2ties"></span><br/></div>
+                        <h1 id="comp"></h1>    
+    </body>
+
+</html>
+
